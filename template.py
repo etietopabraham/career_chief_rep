@@ -46,8 +46,8 @@ list_of_files = [
     "config/config.yaml",
     "params.yaml",
     "schema.yaml",
-    "initial_schema.yaml",
-    "feature_engineered_schema.yaml",
+    # "initial_schema.yaml",
+    # "feature_engineered_schema.yaml",
     # Primary application files
     "main.py",
     "app.py",

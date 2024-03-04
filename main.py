@@ -1,5 +1,6 @@
 from src.career_chief import logger
 from src.career_chief.pipeline.stage_01_data_ingestion import DataIngestionPipeline
+from src.career_chief.pipeline.stage_02_data_validation import DataValidationPipeline
 
 def main():
     """
@@ -11,7 +12,7 @@ def main():
     
     # Define the list of pipeline stages to be executed in sequence
     execution_sequence = [DataIngestionPipeline(), 
-                        #   DataValidationPipeline(),
+                          DataValidationPipeline(),
                         #   DataTransformationPipeline(),
                         #   ModelTrainerPipeline(),
                         #   ModelEvaluationPipeline()

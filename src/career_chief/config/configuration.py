@@ -1,7 +1,9 @@
 from src.career_chief.constants import *
 from src.career_chief.utils.common import read_yaml, create_directories
 from src.career_chief import logger
-from src.career_chief.entity.config_entity import (DataIngestionConfig)
+from src.career_chief.entity.config_entity import (DataIngestionConfig, DataValidationConfig)
+
+import os
 
 class ConfigurationManager:
     """
@@ -85,4 +87,40 @@ class ConfigurationManager:
 
         except AttributeError as e:
             logger.error("The 'data_ingestion' attribute does not exist in the config file.")
+            raise e
+        
+    
+    def get_data_validation_config(self) -> DataValidationConfig:
+        """
+        Extracts data validation configurations and constructs a DataValidationConfig object.
+
+        Returns:
+        - DataValidationConfig: Object containing data validation configuration.
+
+        Raises:
+        - AttributeError: If the 'data_validation' attribute does not exist in the config.
+        """
+        try:
+            # Extract data validation configurations
+            config = self.config.data_validation
+            
+            # Extract schema for data validation
+            
+            schema = self.schema.columns
+            logger.info(schema)
+            
+            # Ensure the directory for the status file exists
+            create_directories([os.path.dirname(config.status_file)])
+
+            # Construct and return the DataValidationConfig object
+            return DataValidationConfig(
+                root_dir=Path(config.root_dir),
+                data_source_file=Path(config.data_source_file),
+                status_file=Path(config.status_file),
+                schema=schema
+            )
+
+        except AttributeError as e:
+            # Log the error and re-raise the exception for handling by the caller
+            logger.error("The 'data_validation' attribute does not exist in the config file.")
             raise e
