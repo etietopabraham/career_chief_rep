@@ -1,1 +1,35 @@
-key: val
+schema_type: "schemasd"
+description: "Defines the acceptable schema features for the jobs data."
+
+# Here, we detail the expected structure and data types for each column in the dataset.
+columns:
+  date_time:
+    type: datetime64
+    description: "The data and time this job was posted"
+  title:
+    type: string
+    description: "The title of the job, indicating the role or position offered."
+  
+  company_name:
+    type: string
+    description: "The name of the company offering the job."
+  
+  location: 
+    type: string
+    description: "The geographic location or office where the job is based."
+  
+  via:
+    type: category
+    description: "The source platform or medium through which the job listing was obtained. Utilizing 'category' type for this field optimizes memory usage, as it is efficient for columns with a limited set of unique values."
+  
+  description:
+    type: object  # Consider changing to 'string' if this field exclusively contains text.
+    description: "A detailed description of the job, including responsibilities, qualifications, and other relevant information. Stored as an 'object' to accommodate mixed data types, but 'string' could be more appropriate for textual data."
+  
+  job_id: 
+    type: string
+    description: "A unique identifier for the job listing, which may include alphanumeric characters."
+  
+  salary_standardized: 
+    type: float
+    description: "The standardized annual salary for the position. Specified as a 'float' to handle numerical values that can represent a wide range of salaries, including those with decimal points."
