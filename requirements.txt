@@ -16,4 +16,5 @@ Flask-Cors==4.0.0
 python-box==7.1.1
 seaborn==0.13.2
 fastparquet==2024.2.0
+ipython==8.22.2
 -e .
