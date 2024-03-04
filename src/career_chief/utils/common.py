@@ -16,7 +16,7 @@ from box import ConfigBox
 from box.exceptions import BoxValueError
 from ensure import ensure_annotations
 
-from career_chief import logger
+from src.career_chief import logger
 
 
 
