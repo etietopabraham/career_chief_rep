@@ -23,4 +23,5 @@ torch==2.1.2
 scipy
 nltk==3.8.1
 transformers==4.38.2
+spacy==3.7.4
 -e .
