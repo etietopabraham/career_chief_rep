@@ -60,3 +60,4 @@ class DataTransformationConfig:
     root_dir: Path  # Directory for storing transformation results and related artifacts
     data_source_file: Path  # Path to the ingested data file for transformation
     data_validation: Path # Path to the validated output file
+    normalization_dict: Path # Path to our abbreviation normalized dictionary

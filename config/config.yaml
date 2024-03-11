@@ -33,3 +33,6 @@ data_transformation:
 
   # Path to data validation status
   data_validation: artifacts/data_validation/status.txt
+
+  # Path to normalization dictionary
+  normalization_dict: artifacts/data_transformation/normalization_dict.json
