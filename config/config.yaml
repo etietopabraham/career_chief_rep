@@ -36,3 +36,47 @@ data_transformation:
 
   # Path to normalization dictionary
   normalization_dict: artifacts/data_transformation/normalization_dict.json
+
+
+# Configuration for spaCy Named Entity Recognition (NER) model training
+spacy_ner:
+  # Root directory for training artifacts
+  root_dir: artifacts/model_training/spacy_ner
+
+  # Path to annotated data
+  json_annotated_path: artifacts/model_training/spacy_ner/project-4-at-2024-04-01-07-30-2333a63c.json  
+ 
+  # Output path for the converted spaCy data
+  output_path: artifacts/model_training/spacy_ner/output/converted_data.spacy  
+
+  # Path to unannotated training data
+  train_data_path: artifacts/data_transformation/train_data.csv  
+
+  # Path to unannotated test data
+  test_data_path: artifacts/data_transformation/test_data.csv  
+
+  # Path to unannotated validation data
+  val_data_path: artifacts/data_transformation/val_data.csv  
+
+  # Processed spaCy training data
+  spacy_train: artifacts/model_training/spacy_ner/output/train_data.spacy  
+
+  # Processed spaCy dev (validation) data
+  spacy_dev: artifacts/model_training/spacy_ner/output/dev_data.spacy  
+
+  # GPU allocator (use 'pytorch' for PyTorch)
+  gpu_allocator: pytorch  
+
+  # NLP pipeline components
+  components:  
+    - name: "ner"
+      factory: "ner"
+
+  # Training parameters
+  training:  
+    batch_size: 128
+    dropout: 0.5
+    optimizer:
+      learn_rate: 0.001
+    patience: 3
+    max_epochs: 20

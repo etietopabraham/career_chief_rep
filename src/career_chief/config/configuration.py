@@ -1,7 +1,7 @@
 from src.career_chief.constants import *
 from src.career_chief.utils.common import read_yaml, create_directories
 from src.career_chief import logger
-from src.career_chief.entity.config_entity import (DataIngestionConfig, DataValidationConfig)
+from src.career_chief.entity.config_entity import (DataIngestionConfig, DataValidationConfig, SpacyNERConfig)
 
 import os
 
@@ -124,3 +124,39 @@ class ConfigurationManager:
             # Log the error and re-raise the exception for handling by the caller
             logger.error("The 'data_validation' attribute does not exist in the config file.")
             raise e
+        
+
+    def get_spacy_ner_config(self) -> SpacyNERConfig:
+        """
+        Fetches and constructs the spaCy NER training configuration.
+
+        Extracts settings related to spaCy NER model training from the loaded YAML
+        configurations and returns them encapsulated in a SpacyNERConfig object.
+
+        Returns:
+        - SpacyNERConfig: Configuration object for spaCy NER model training.
+
+        Raises:
+        - KeyError: If any required configuration is missing.
+        """
+        try:
+            ner_config = self.config['spacy_ner']
+            
+            # Dynamically construct and return the SpacyNERConfig object
+            return SpacyNERConfig(
+                root_dir=Path(ner_config['root_dir']),
+                json_annotated_path=Path(ner_config['json_annotated_path']),
+                output_path=Path(ner_config['output_path']),
+                train_data_path=Path(ner_config['train_data_path']),
+                test_data_path=Path(ner_config['test_data_path']),
+                val_data_path=Path(ner_config['val_data_path']),
+                spacy_train=Path(ner_config['spacy_train']),
+                spacy_dev=Path(ner_config['spacy_dev']),
+                gpu_allocator=ner_config['gpu_allocator'],
+                components=ner_config['components'],
+                training=ner_config['training']
+            )
+
+        except KeyError as e:
+            logger.error(f"A required configuration is missing in the 'spacy_ner' section: {e}")
+            raise KeyError(f"Missing configuration in 'spacy_ner': {e}") from e

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List, Any
 
 @dataclass(frozen=True)
 class DataIngestionConfig:
@@ -61,3 +61,37 @@ class DataTransformationConfig:
     data_source_file: Path  # Path to the ingested data file for transformation
     data_validation: Path # Path to the validated output file
     normalization_dict: Path # Path to our abbreviation normalized dictionary
+
+
+@dataclass
+class SpacyNERConfig:
+    """
+    Represents the configuration for spaCy Named Entity Recognition (NER) model training.
+
+    This class is intended to be populated with values from a YAML configuration file,
+    providing structured access to the configurations within the Python codebase.
+    
+    Attributes:
+        root_dir (Path): Directory for storing training artifacts and results.
+        json_annotated_path (Path): Path to the JSON file with annotations from Label Studio.
+        output_path (Path): Destination path for the converted spaCy data format.
+        train_data_path (Path): Path to the CSV file containing unannotated training data.
+        test_data_path (Path): Path to the CSV file containing unannotated test data.
+        val_data_path (Path): Path to the CSV file containing unannotated validation data.
+        spacy_train (Path): Path for the processed spaCy training data.
+        spacy_dev (Path): Path for the processed spaCy development (validation) data.
+        gpu_allocator (str): The GPU allocator for training, e.g., 'pytorch'.
+        components (List[Dict[str, Any]]): Configuration for the NER pipeline components.
+        training (Dict[str, Any]): Dictionary containing the training parameters.
+    """
+    root_dir: Path
+    json_annotated_path: Path
+    output_path: Path
+    train_data_path: Path
+    test_data_path: Path
+    val_data_path: Path
+    spacy_train: Path
+    spacy_dev: Path
+    gpu_allocator: str
+    components: List[Dict[str, Any]]
+    training: Dict[str, Any]
