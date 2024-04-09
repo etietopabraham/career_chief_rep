@@ -85,6 +85,7 @@ class SpacyNERConfig:
         training (Dict[str, Any]): Dictionary containing the training parameters.
     """
     root_dir: Path
+    ner_job_description_extractor_dir: Path
     json_annotated_path: Path
     output_path: Path
     train_data_path: Path

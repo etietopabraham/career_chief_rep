@@ -145,6 +145,7 @@ class ConfigurationManager:
             # Dynamically construct and return the SpacyNERConfig object
             return SpacyNERConfig(
                 root_dir=Path(ner_config['root_dir']),
+                ner_job_description_extractor_dir=Path(ner_config['ner_job_description_extractor_dir']),
                 json_annotated_path=Path(ner_config['json_annotated_path']),
                 output_path=Path(ner_config['output_path']),
                 train_data_path=Path(ner_config['train_data_path']),

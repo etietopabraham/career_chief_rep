@@ -43,6 +43,8 @@ spacy_ner:
   # Root directory for training artifacts
   root_dir: artifacts/model_training/spacy_ner
 
+  ner_job_description_extractor_dir: "/Users/macbookpro/Documents/Documents - Macbook’s MacBook Pro/career/career_chief_rep/artifacts/model_training/NERJobDescriptionExtractor/Model"
+
   # Path to annotated data
   json_annotated_path: artifacts/model_training/spacy_ner/project-4-at-2024-04-01-07-30-2333a63c.json  
  
