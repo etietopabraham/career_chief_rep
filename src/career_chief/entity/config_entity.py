@@ -67,12 +67,10 @@ class DataTransformationConfig:
 class SpacyNERConfig:
     """
     Represents the configuration for spaCy Named Entity Recognition (NER) model training.
-
-    This class is intended to be populated with values from a YAML configuration file,
-    providing structured access to the configurations within the Python codebase.
     
     Attributes:
         root_dir (Path): Directory for storing training artifacts and results.
+        ner_job_description_extractor_dir (Path): Directory containing the NER job description extractor model.
         json_annotated_path (Path): Path to the JSON file with annotations from Label Studio.
         output_path (Path): Destination path for the converted spaCy data format.
         train_data_path (Path): Path to the CSV file containing unannotated training data.
@@ -80,6 +78,11 @@ class SpacyNERConfig:
         val_data_path (Path): Path to the CSV file containing unannotated validation data.
         spacy_train (Path): Path for the processed spaCy training data.
         spacy_dev (Path): Path for the processed spaCy development (validation) data.
+        original_dataset_path (Path): Path to the original dataset used for entity extraction.
+        train_data_extracted_entities (Path): Path for the CSV file with entities extracted from the training data.
+        merged_output_path (Path): Path for the merged dataset after combining original data with extracted entities.
+        pretrained_model_dir (Path): Directory containing the pretrained model for fine-tuning.
+        custom_model_dir (Path): Directory intended for storing the custom-trained model.
         gpu_allocator (str): The GPU allocator for training, e.g., 'pytorch'.
         components (List[Dict[str, Any]]): Configuration for the NER pipeline components.
         training (Dict[str, Any]): Dictionary containing the training parameters.
@@ -93,6 +96,13 @@ class SpacyNERConfig:
     val_data_path: Path
     spacy_train: Path
     spacy_dev: Path
+    original_dataset_path: Path
+    train_data_extracted_entities: Path
+    merged_output_path: Path
+    pretrained_model_dir: Path
+    custom_model_dir: Path
     gpu_allocator: str
     components: List[Dict[str, Any]]
     training: Dict[str, Any]
+    training_metrics_path_custom: Path
+    training_metrics_path_finetuned: Path

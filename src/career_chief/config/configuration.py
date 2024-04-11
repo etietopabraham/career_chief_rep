@@ -142,7 +142,6 @@ class ConfigurationManager:
         try:
             ner_config = self.config['spacy_ner']
             
-            # Dynamically construct and return the SpacyNERConfig object
             return SpacyNERConfig(
                 root_dir=Path(ner_config['root_dir']),
                 ner_job_description_extractor_dir=Path(ner_config['ner_job_description_extractor_dir']),
@@ -153,11 +152,17 @@ class ConfigurationManager:
                 val_data_path=Path(ner_config['val_data_path']),
                 spacy_train=Path(ner_config['spacy_train']),
                 spacy_dev=Path(ner_config['spacy_dev']),
-                gpu_allocator=ner_config['gpu_allocator'],
-                components=ner_config['components'],
-                training=ner_config['training']
+                original_dataset_path=Path(ner_config['original_dataset_path']),
+                train_data_extracted_entities=Path(ner_config['train_data_extracted_entities']),
+                merged_output_path=Path(ner_config['merged_output_path']),
+                pretrained_model_dir=Path(ner_config['pretrained_model_dir']),
+                custom_model_dir=Path(ner_config['custom_model_dir']),
+                gpu_allocator=ner_config.get('gpu_allocator', False),
+                components=ner_config.get('components', []),
+                training=ner_config['training'],
+                training_metrics_path_custom=ner_config['training_metrics_path_custom'],
+                training_metrics_path_finetuned=ner_config['training_metrics_path_finetuned']
             )
-
         except KeyError as e:
             logger.error(f"A required configuration is missing in the 'spacy_ner' section: {e}")
             raise KeyError(f"Missing configuration in 'spacy_ner': {e}") from e

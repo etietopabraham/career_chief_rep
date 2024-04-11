@@ -66,6 +66,23 @@ spacy_ner:
   # Processed spaCy dev (validation) data
   spacy_dev: artifacts/model_training/spacy_ner/output/dev_data.spacy  
 
+  # Original dataset path
+  original_dataset_path: artifacts/data_ingestion/gsearch_jobs.csv
+
+  train_data_extracted_entities: artifacts/model_training/NERJobDescriptionExtractor/Model/finetuned_model/train_data_extracted_entities.csv
+
+  merged_output_path: artifacts/data_transformation/merged_train_data.csv
+
+  # Pretrained model directory
+  pretrained_model_dir: artifacts/model_training/NERJobDescriptionExtractor/Model
+
+  # Custom model directory
+  custom_model_dir: artifacts/model_training/spacy_ner/trained_model  
+
+  training_metrics_path_custom: artifacts/model_training/spacy_ner/output/training_metrics_ner_custom.csv
+
+  training_metrics_path_finetuned: artifacts/model_training/NERJobDescriptionExtractor/Model/finetuned_model/training_metrics_finetuned.csv
+
   # GPU allocator (use 'pytorch' for PyTorch)
   gpu_allocator: pytorch  
 
