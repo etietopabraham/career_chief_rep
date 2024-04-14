@@ -99,3 +99,15 @@ spacy_ner:
       learn_rate: 0.001
     patience: 3
     max_epochs: 20
+
+
+# Configuration related to bertopic thematic clustering
+ber_topic:
+  # Root directory for training artifacts
+  root_dir: artifacts/model_training/bertopic_thematic
+
+  # Path to enriched train dataset
+  data_path:  artifacts/data_transformation/merged_train_data.csv
+  
+  # Path to save enriched dataset
+  output_path: artifacts/model_training/bertopic_thematic/output

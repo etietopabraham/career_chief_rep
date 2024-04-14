@@ -106,3 +106,10 @@ class SpacyNERConfig:
     training: Dict[str, Any]
     training_metrics_path_custom: Path
     training_metrics_path_finetuned: Path
+
+
+@dataclass
+class BERTopicConfig:
+    root_dir: Path
+    data_path: Path
+    output_path: Path

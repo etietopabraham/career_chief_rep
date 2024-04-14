@@ -1,7 +1,10 @@
 from src.career_chief.constants import *
 from src.career_chief.utils.common import read_yaml, create_directories
 from src.career_chief import logger
-from src.career_chief.entity.config_entity import (DataIngestionConfig, DataValidationConfig, SpacyNERConfig)
+from src.career_chief.entity.config_entity import (DataIngestionConfig, 
+                                                   DataValidationConfig, 
+                                                   SpacyNERConfig,
+                                                   BERTopicConfig)
 
 import os
 
@@ -166,3 +169,18 @@ class ConfigurationManager:
         except KeyError as e:
             logger.error(f"A required configuration is missing in the 'spacy_ner' section: {e}")
             raise KeyError(f"Missing configuration in 'spacy_ner': {e}") from e
+        
+    
+    def get_ber_topic_config(self) -> BERTopicConfig:
+        
+        try:
+            ber_topic_config = self.config['ber_topic']
+            
+            return BERTopicConfig(
+                root_dir=Path(ber_topic_config['root_dir']),
+                data_path=Path(ber_topic_config['data_path']),
+                output_path=Path(ber_topic_config['output_path']),
+            )
+        except KeyError as e:
+            logger.error(f"A required configuration is missing in the 'ber_topic_config' section: {e}")
+            raise KeyError(f"Missing configuration in 'ber_topic_config': {e}") from e
