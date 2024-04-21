@@ -4,7 +4,8 @@ from src.career_chief import logger
 from src.career_chief.entity.config_entity import (DataIngestionConfig, 
                                                    DataValidationConfig, 
                                                    SpacyNERConfig,
-                                                   BERTopicConfig)
+                                                   BERTopicConfig,
+                                                   SemanticRoleLabelingConfig)
 
 import os
 
@@ -184,3 +185,19 @@ class ConfigurationManager:
         except KeyError as e:
             logger.error(f"A required configuration is missing in the 'ber_topic_config' section: {e}")
             raise KeyError(f"Missing configuration in 'ber_topic_config': {e}") from e
+        
+
+    def get_semantic_role_labeling_config(self) -> SemanticRoleLabelingConfig:
+        
+        try:
+            semantic_role_labeling_config = self.config['semantic_role_labeling']
+            
+            return SemanticRoleLabelingConfig(
+                root_dir=Path(semantic_role_labeling_config['root_dir']),
+                data_path=Path(semantic_role_labeling_config['data_path']),
+                output_path=Path(semantic_role_labeling_config['output_path']),
+                model_path=semantic_role_labeling_config['model_path']
+            )
+        except KeyError as e:
+            logger.error(f"A required configuration is missing in the 'semantic_role_labeling_config' section: {e}")
+            raise KeyError(f"Missing configuration in 'semantic_role_labeling_config': {e}") from e

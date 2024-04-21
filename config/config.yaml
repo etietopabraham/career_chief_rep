@@ -111,3 +111,18 @@ ber_topic:
   
   # Path to save enriched dataset
   output_path: artifacts/model_training/bertopic_thematic/output
+
+semantic_role_labeling:
+  # Root directory for training artifacts
+  root_dir: artifacts/model_training/semantic_role_labeling
+
+  # Path to enriched train dataset
+  data_path:  artifacts/model_training/bertopic_thematic/output/clustering_results_filtered_123.csv
+  
+  # Path to save enriched dataset
+  # output_path: artifacts/model_training/semantic_role_labeling/output
+  output_path: /Volumes/Z9/thesis-artifacts/output
+
+  # Model Path
+  # model_path: https://storage.googleapis.com/allennlp-public-models/structured-prediction-srl-bert.2020.12.15.tar.gz
+  model_path: https://storage.googleapis.com/allennlp-public-models/openie-model.2020.03.26.tar.gz

@@ -113,3 +113,11 @@ class BERTopicConfig:
     root_dir: Path
     data_path: Path
     output_path: Path
+
+
+@dataclass
+class SemanticRoleLabelingConfig:
+    root_dir: Path
+    data_path: Path
+    output_path: Path
+    model_path: Path

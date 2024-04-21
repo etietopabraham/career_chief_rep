@@ -19,10 +19,12 @@ fastparquet==2024.2.0
 ipython
 datasets==2.18.0
 plotly==5.19.0
-torch==2.1.2
+torch==1.7.1
 scipy
 nltk==3.8.1
 transformers==4.38.2
 spacy==3.7.4
 bertopic
+allennlp
+sentencepiece
 -e .
