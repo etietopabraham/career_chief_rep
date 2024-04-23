@@ -5,7 +5,8 @@ from src.career_chief.entity.config_entity import (DataIngestionConfig,
                                                    DataValidationConfig, 
                                                    SpacyNERConfig,
                                                    BERTopicConfig,
-                                                   SemanticRoleLabelingConfig)
+                                                   SemanticRoleLabelingConfig,
+                                                   ContextualEmbedderConfig)
 
 import os
 
@@ -201,3 +202,18 @@ class ConfigurationManager:
         except KeyError as e:
             logger.error(f"A required configuration is missing in the 'semantic_role_labeling_config' section: {e}")
             raise KeyError(f"Missing configuration in 'semantic_role_labeling_config': {e}") from e
+        
+    def get_contextual_embeddings_config(self) -> ContextualEmbedderConfig:
+        
+        try:
+            get_contextual_embeddings_config = self.config['contextual_embeddings']
+            
+            return ContextualEmbedderConfig(
+                root_dir=Path(get_contextual_embeddings_config['root_dir']),
+                results_path=Path(get_contextual_embeddings_config['results_path']),
+                output_path=Path(get_contextual_embeddings_config['output_path']),
+                model_name=get_contextual_embeddings_config['model_name']
+            )
+        except KeyError as e:
+            logger.error(f"A required configuration is missing in the 'contextual embeddings config' section: {e}")
+            raise KeyError(f"Missing configuration in 'contextual embeddings config': {e}") from e

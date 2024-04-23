@@ -121,3 +121,18 @@ class SemanticRoleLabelingConfig:
     data_path: Path
     output_path: Path
     model_path: Path
+
+
+@dataclass
+class ContextualEmbedderConfig:
+    # Path to the root directory where embedding artifacts will be stored.
+    root_dir: Path
+    
+    # Path to the file containing results from Semantic Role Labeling (SRL) and possibly other analyses.
+    results_path: Path
+    
+    # Path where the generated embeddings should be saved.
+    output_path: Path
+    
+    # The name of the model to be used from SentenceTransformers for generating embeddings.
+    model_name: str
